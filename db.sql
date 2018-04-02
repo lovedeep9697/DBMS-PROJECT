@@ -11,8 +11,8 @@ create table movie (
     rating numeric(3,1),
     /* director multivalued */
     trailer varchar(50),
-    language varchar(10) not null,
-    check rating<20,
+    language varchar(10) not null
+    -- check rating<20
 
 );
 
@@ -20,7 +20,7 @@ create table movie (
 create table director_movie (
     director_name varchar(20),
     movie_id varchar(20),
-    foreign key(movie_id) references movie,
+    foreign key(movie_id) references movie(movie_id),
     primary key(movie_id,director_name)
 );
 
@@ -28,8 +28,8 @@ create table director_movie (
 create table actor_movie (
     actor_name varchar(20),
     movie_id varchar(20),
-    foreign key(movie_id) references movie on delete cascade,
-    primary key(movie_id,director_name)
+    foreign key(movie_id) references movie(movie_id) on delete cascade,
+    primary key(movie_id,actor_name)
 );
 
 create table cinema_hall (
@@ -43,11 +43,11 @@ create table movie_cinema_hall (
     movie_id varchar(20),
     
     foreign key(cinema_hall_id)
-    references cinema_hall
+    references cinema_hall(cinema_hall_id)
     on delete cascade,
     
     foreign key(movie_id) 
-    references movie
+    references movie(movie_id)
     on delete cascade,
     
     primary key(cinema_hall_id,movie_id)
@@ -64,17 +64,53 @@ create table shows (
     movie_id varchar (20),
 
     foreign key(cinema_hall_id,movie_id)
-    references movie_cinema_hall
+    references movie_cinema_hall(cinema_hall_id,movie_id)
     on delete cascade,
 
     primary key(show_id,cinema_hall_id,movie_id)
+);
+
+create table payments(
+    amount int,
+    payment_id varchar(20),
+
+    primary key(payment_id)
+
+);
+
+
+create table administrator (
+    admin_id varchar(20) ,
+    password varchar(20),
+    /*merging cinema hall*/
+    cinema_hall_id varchar(20),
+
+
+    primary key(admin_id),
+    foreign key(cinema_hall_id)
+    references cinema_hall(cinema_hall_id)
+
+    
+);
+
+create table customer(
+    email varchar(30),
+    cust_id varchar(20),
+    cust_first_name varchar(20),
+    cust_middle_name varchar(20),
+    cust_last_name varchar(20),
+    date_of_birth date,
+
+
+    primary key(cust_id)
+
 );
 
 create table tickets (
     ticket_no varchar(20),
     seat_no varchar(20),
     hall_no varchar(20),
-    show_id varchar(20),
+    -- show_id varchar(20),
 
     admin_id varchar(20) /* sells relation merge */,
     
@@ -90,73 +126,43 @@ create table tickets (
     cust_id varchar(20),
 
     foreign key (admin_id)
-    references administrator,
+    references administrator(admin_id),
 
     foreign key (show_id,cinema_hall_id,movie_id)
-    references shows,
+    references shows(show_id,cinema_hall_id,movie_id),
 
-    foreign key(payment_id) references payments,
-    foreign key(cust_id ) references customer,
+    foreign key(payment_id) references payments (payment_id),
+    foreign key(cust_id ) references customer(cust_id),
 
     primary key(ticket_no)
 );
 /* named administrator in ER model */
-create table administrator (
-    admin_id varchar(20) ,
-    password varchar(20),
-    /*merging cinema hall*/
-    cinema_hall_id varchar(20),
 
-
-    primary key(admin_id),
-    foreign key(cinema_hall_id)
-    references cinema_hall
-
-    
-);
 create table seats(
   seat_no varchar(20),
   amount int,
   cinema_hall_id varchar(20),
 
   foreign key(cinema_hall_id)
-  references cinema_hall
+  references cinema_hall(cinema_hall_id)
 
 );
-create table customer(
-    email varchar(30),
-    cust_id varchar(20),
-    cust_first_name varchar(20),
-    cust_middle_name varchar(20),
-    cust_last_name varchar(20),
-    date_of_birth date,
 
-
-    primary key(cust_id)
-
-);
 create table phone_number(
     phone_number varchar(20),
     cust_id varchar(20),
 
     primary key (phone_number,cust_id),
-    foreign key(cust_id) references customer
+    foreign key(cust_id) references customer(cust_id)
 
 );
 
-create table payments(
-    amount int,
-    payment_id varchar(20),
-
-    primary key(payment_id)
-
-);
 
 create table offline(
-    receipt_no varchar(20) not null,
+    receipt_no varchar(20),
     payment_id varchar(20),
     
-    foreign key(payment_id) references payments
+    foreign key(payment_id) references payments(payment_id),
     primary key(receipt_no)    
 
 );
@@ -167,7 +173,7 @@ create table online(
     payment_id varchar(20),
     transaction_id varchar(20),
 
-    foreign key(payment_id) references payments,
+    foreign key(payment_id) references payments(payment_id),
     primary key(transaction_id) 
 
 
