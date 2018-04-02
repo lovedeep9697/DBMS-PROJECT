@@ -12,7 +12,7 @@ create table movie (
     /* director multivalued */
     trailer varchar(50),
     language varchar(10) not null,
-    check rating<20,
+    check rating<20
 
 );
 
@@ -29,7 +29,7 @@ create table actor_movie (
     actor_name varchar(20),
     movie_id varchar(20),
     foreign key(movie_id) references movie on delete cascade,
-    primary key(movie_id,director_name)
+    primary key(movie_id,actor_name)
 );
 
 create table cinema_hall (
@@ -74,7 +74,7 @@ create table tickets (
     ticket_no varchar(20),
     seat_no varchar(20),
     hall_no varchar(20),
-    show_id varchar(20),
+    -- show_id varchar(20),
 
     admin_id varchar(20) /* sells relation merge */,
     
