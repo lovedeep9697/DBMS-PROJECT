@@ -37,7 +37,7 @@ create table cinema_hall (
     hall_name varchar(20),
     primary key(cinema_hall_id)
 );
-/* named as screening in ER diagram */
+/* named as screened in relation ER diagram */
 create table movie_cinema_hall (
     cinema_hall_id varchar(20),
     movie_id varchar(20),
@@ -83,15 +83,93 @@ create table tickets (
     cinema_hall_id varchar(20),
     movie_id varchar(20),
 
+    /* for referencing payments*/
+    payment_id varchar(20),
+
+    /*for referencing customer */
+    cust_id varchar(20),
+
     foreign key (admin_id)
     references administrator,
 
     foreign key (show_id,cinema_hall_id,movie_id)
     references shows,
 
+    foreign key(payment_id) references payments,
+    foreign key(cust_id ) references customer,
+
     primary key(ticket_no)
 );
 /* named administrator in ER model */
 create table administrator (
+    admin_id varchar(20) ,
+    password varchar(20),
+    /*merging cinema hall*/
+    cinema_hall_id varchar(20),
+
+
+    primary key(admin_id),
+    foreign key(cinema_hall_id)
+    references cinema_hall
+
     
+);
+create table seats(
+  seat_no varchar(20),
+  amount int,
+  cinema_hall_id varchar(20),
+
+  foreign key(cinema_hall_id)
+  references cinema_hall
+
+);
+create table customer(
+    email varchar(30),
+    cust_id varchar(20),
+    cust_first_name varchar(20),
+    cust_middle_name varchar(20),
+    cust_last_name varchar(20),
+    date_of_birth date,
+
+
+    primary key(cust_id)
+
+);
+create table phone_number(
+    phone_number varchar(20),
+    cust_id varchar(20),
+
+    primary key (phone_number,cust_id),
+    foreign key(cust_id) references customer
+
+);
+
+create table payments(
+    amount int,
+    payment_id varchar(20),
+
+    primary key(payment_id)
+
+);
+
+create table offline(
+    receipt_no varchar(20) not null,
+    payment_id varchar(20),
+    
+    foreign key(payment_id) references payments
+    primary key(receipt_no)    
+
+);
+create table online(
+    card_no varchar(20),
+    bank varchar(20),
+    name_on_card varchar(20),
+    payment_id varchar(20),
+    transaction_id varchar(20),
+
+    foreign key(payment_id) references payments,
+    primary key(transaction_id) 
+
+
+
 );
