@@ -93,19 +93,6 @@ create table administrator (
     
 );
 
-create table customer(
-    email varchar(30),
-    cust_id varchar(20),
-    cust_first_name varchar(20),
-    cust_middle_name varchar(20),
-    cust_last_name varchar(20),
-    date_of_birth date,
-
-
-    primary key(cust_id)
-
-);
-
 create table tickets (
     ticket_no varchar(20),
     seat_no varchar(20),
