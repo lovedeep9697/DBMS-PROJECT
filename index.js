@@ -8,9 +8,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 var con = mysql.createConnection({
-	  host: "localhost",
-	  user: "root",
-	  password: "password"
+  host: "localhost",
+  user: "root",
+  password: "password"
 });
 
 con.connect(function(err) {
@@ -30,12 +30,14 @@ app.get('/', function(req, res){
 
 app.post('/create_movie',function(req,res){
 	console.log(req.body);
-	// q = "insert into movie values(\"";
-	// con.query(q, function (err, result) {
-	    // if (err) throw err;
-	    // console.log(result);
-	// });
-	res.send('hello there');
+	console.log(req.body['movie_name ']);
+	q = "insert into movie values(\""+req.body.movie_id+"\",\""+req.body.certifications+"\",\""+req.body.duration+"\",\""+req.body.release_date+"\",\""+req.body.movie_name+"\",\"8\",\"8\",\""+req.body.language+"\")";
+	console.log(q)
+	con.query(q, function (err, result) {
+	    if (err) throw err;
+	    console.log(result);
+	});
+	res.send('movie created');
 });
 
 app.listen(3000);

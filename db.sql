@@ -11,13 +11,9 @@ create table movie (
     rating numeric(3,1),
     /* director multivalued */
     trailer varchar(50),
-<<<<<<< HEAD
-    language varchar(10) not null,
-    check rating<20
-=======
+
     language varchar(10) not null
     -- check rating<20
->>>>>>> c16f91f37ded50b577f5517eb2c867452b862d51
 
 );
 
@@ -33,11 +29,8 @@ create table director_movie (
 create table actor_movie (
     actor_name varchar(20),
     movie_id varchar(20),
-<<<<<<< HEAD
     foreign key(movie_id) references movie on delete cascade,
-=======
-    foreign key(movie_id) references movie(movie_id) on delete cascade,
->>>>>>> c16f91f37ded50b577f5517eb2c867452b862d51
+
     primary key(movie_id,actor_name)
 );
 
