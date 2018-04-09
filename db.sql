@@ -11,10 +11,8 @@ create table movie (
     rating numeric(3,1),
     /* director multivalued */
     trailer varchar(50),
-
     language varchar(10) not null
     -- check rating<20
-
 );
 
 /* multivalued attribute */
