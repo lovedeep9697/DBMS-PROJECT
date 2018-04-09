@@ -28,6 +28,10 @@ app.get('/', function(req, res){
 
 });
 
+app.get('/cinema_hall_create',function(req,res){
+	res.render('cinema_hall');
+});
+
 app.post('/create_movie',function(req,res){
 	console.log(req.body);
 	// console.log(req.body['movie_name ']);
@@ -42,8 +46,9 @@ app.post('/create_movie',function(req,res){
 
 	director_name = director_name.split(",");
 	actor_name = actor_name.split(",");
+	console.log(director_name,actor_name);
 	for (i in director_name){
-		q = "insert into director_movie values(\""+i+"\",\""+req.body.movie_id+"\")";
+		q = "insert into director_movie values(\""+director_name[i]+"\",\""+req.body.movie_id+"\")";
 		console.log(q);
 		con.query(q, function (err, result) {
 		    if (err) throw err;
@@ -53,7 +58,7 @@ app.post('/create_movie',function(req,res){
 	}
 
 	for (i in actor_name){
-		q = "insert into actor_movie values(\""+i+"\",\""+req.body.movie_id+"\")";
+		q = "insert into actor_movie values(\""+actor_name[i]+"\",\""+req.body.movie_id+"\")";
 		console.log(q);
 		con.query(q, function (err, result) {
 		    if (err) throw err;
