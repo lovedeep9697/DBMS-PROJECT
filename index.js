@@ -65,4 +65,14 @@ app.post('/create_movie',function(req,res){
 	res.send('movie created');
 });
 
+app.post('/create_cinema_hall',function(req,res){
+	q = "insert into cinema_hall values(\""+req.body.cinema_hall_id+"\",\""+req.body.hall_name+"\")";
+	console.log(q);
+	con.query(q, function (err, result) {
+	    if (err) throw err;
+	    console.log(result);
+	});
+});
+
+
 app.listen(3000);
