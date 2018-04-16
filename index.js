@@ -31,6 +31,23 @@ app.use(function(req,res,next){
 	}
 });
 
+app.post('/search',function(req,res){
+	
+	search = req.body.search;
+	console.log("search se aaya",search);
+	q = "select * from movie where movie_name = \""+search+"\"";
+  	movies = []
+  	con.query(q, function (err, result) {
+	    if (err) throw err;
+	   	// console.log(result);
+	   	
+	   	res.render('front_screen.ejs',{name:sess.email,movies:result});
+	});
+
+
+});
+
+
 
 app.post('/req_sign_in',function(req,res,next){
 	
