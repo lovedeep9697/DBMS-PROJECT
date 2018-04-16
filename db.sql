@@ -27,7 +27,8 @@ create table director_movie (
 create table actor_movie (
     actor_name varchar(20),
     movie_id varchar(20),
-    foreign key(movie_id) references movie on delete cascade,
+    foreign key(movie_id) 
+        references movie(movie_id) on delete cascade,
 
     primary key(movie_id,actor_name)
 );
@@ -95,12 +96,14 @@ create table administrator (
 
 create table customer(
     cust_id varchar(20),
+    cust_pass varchar(20) not null,
     email varchar(30),
     first_name varchar(10),
     middle_name varchar(10),
     last_name varchar(10),
     cus_date date,
     primary key(cust_id)
+
 );
 
 
@@ -129,8 +132,10 @@ create table tickets (
     foreign key (show_id,cinema_hall_id,movie_id)
     references shows(show_id,cinema_hall_id,movie_id),
 
-    foreign key(payment_id) references payments (payment_id),
-    foreign key(cust_id ) references customer(cust_id),
+    foreign key(payment_id) 
+    references payments (payment_id),
+    foreign key(cust_id ) 
+    references customer(cust_id),
 
     primary key(ticket_no)
 );
