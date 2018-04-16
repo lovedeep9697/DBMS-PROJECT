@@ -6,10 +6,18 @@
 
 html, body {
   margin: 0;
-  background: black;
+  background: white;
   font-family: 'Montserrat', helvetica, arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
+}
+
+.link {
+  display: block;
+  text-align: center;
+  color: #777;
+  text-decoration: none;
+  padding: 10px;
 }
 
 .movie_card {
@@ -17,14 +25,16 @@ html, body {
   display: block;
   width: 800px;
   height: 350px;
-  margin: 100px auto;
+  margin: 80px auto;
   overflow: hidden;
   border-radius: 10px;
   transition: all 0.4s;
+  box-shadow: 0px 0px 120px -25px rgba(0, 0, 0, 0.5);
 }
 .movie_card:hover {
   -webkit-transform: scale(1.02);
           transform: scale(1.02);
+  box-shadow: 0px 0px 80px -25px rgba(0, 0, 0, 0.5);
   transition: all 0.4s;
 }
 .movie_card .info_section {
@@ -41,24 +51,24 @@ html, body {
   height: 40%;
 }
 .movie_card .info_section .movie_header h1 {
-  color: #fff;
+  color: black;
   font-weight: 400;
 }
 .movie_card .info_section .movie_header h4 {
-  color: #9ac7fa;
+  color: #555;
   font-weight: 400;
 }
 .movie_card .info_section .movie_header .minutes {
   display: inline-block;
-  margin-top: 10px;
-  color: #fff;
+  margin-top: 15px;
+  color: #555;
   padding: 5px;
   border-radius: 5px;
-  border: 1px solid rgba(255, 255, 255, 0.13);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 .movie_card .info_section .movie_header .type {
   display: inline-block;
-  color: #cee4fd;
+  color: #959595;
   margin-left: 10px;
 }
 .movie_card .info_section .movie_header .locandina {
@@ -73,7 +83,7 @@ html, body {
   height: 50%;
 }
 .movie_card .info_section .movie_desc .text {
-  color: #cfd6e1;
+  color: #545454;
 }
 .movie_card .info_section .movie_social {
   height: 10%;
@@ -86,14 +96,14 @@ html, body {
 }
 .movie_card .info_section .movie_social ul li {
   display: inline-block;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(0, 0, 0, 0.3);
   transition: color 0.3s;
   transition-delay: 0.15s;
   margin: 0 10px;
 }
 .movie_card .info_section .movie_social ul li:hover {
   transition: color 0.3s;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(0, 0, 0, 0.7);
 }
 .movie_card .info_section .movie_social ul li i {
   font-size: 19px;
@@ -111,7 +121,7 @@ html, body {
 
 @media screen and (min-width: 768px) {
   .movie_header {
-    width: 60%;
+    width: 65%;
   }
 
   .movie_desc {
@@ -119,7 +129,7 @@ html, body {
   }
 
   .info_section {
-    background: linear-gradient(to right, #0d0d0c 50%, transparent 100%);
+    background: linear-gradient(to right, #e5e6e6 50%, transparent 100%);
   }
 
   .blur_back {
@@ -150,38 +160,16 @@ html, body {
   }
 
   .info_section {
-    background: linear-gradient(to top, #141413 50%, transparent 100%);
+    background: linear-gradient(to top, #e5e6e6 50%, transparent 100%);
     display: inline-grid;
   }
 }
-#bright {
-  box-shadow: 0px 0px 150px -45px rgba(255, 51, 0, 0.5);
-}
-#bright:hover {
-  box-shadow: 0px 0px 120px -55px rgba(255, 51, 0, 0.5);
-}
-
 .bright_back {
   background: url("https://occ-0-2433-448.1.nflxso.net/art/cd5c9/3e192edf2027c536e25bb5d3b6ac93ced77cd5c9.jpg");
 }
 
-#tomb {
-  box-shadow: 0px 0px 150px -45px rgba(19, 160, 134, 0.6);
-}
-#tomb:hover {
-  box-shadow: 0px 0px 120px -55px rgba(19, 160, 134, 0.6);
-}
-
 .tomb_back {
   background: url("https://fsmedia.imgix.net/cd/c9/5e/ba/4817/4d9a/93f0/c776ec32ecbc/lara-crofts-neck-looks-unnatural-in-the-new-poster-for-tomb-raider.png");
-}
-
-#ave {
-  box-shadow: 0px 0px 150px -45px rgba(199, 147, 75, 0.7);
-  margin-bottom: 200px;
-}
-#ave:hover {
-  box-shadow: 0px 0px 120px -55px rgba(199, 147, 75, 0.7);
 }
 
 .ave_back {
