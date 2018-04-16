@@ -11,7 +11,9 @@ create table movie (
     rating numeric(3,1),
     /* director multivalued */
     trailer varchar(50),
-    language varchar(10) not null
+    language varchar(10) not null,
+    genre varchar(10) not null,
+    description varchar(1000) 
     -- check rating<20
 );
 
