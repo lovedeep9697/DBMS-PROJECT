@@ -93,6 +93,17 @@ create table administrator (
     
 );
 
+create table customer(
+    cust_id varchar(20),
+    email varchar(30),
+    first_name varchar(10),
+    middle_name varchar(10),
+    last_name varchar(10),
+    cus_date date,
+    primary key(cust_id)
+);
+
+
 create table tickets (
     ticket_no varchar(20),
     seat_no varchar(20),
@@ -166,3 +177,5 @@ create table online(
 
 
 );
+
+

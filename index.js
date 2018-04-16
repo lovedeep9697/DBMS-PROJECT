@@ -28,7 +28,11 @@ app.get('/', function(req, res){
 
 });
 
-app.get('/cinema_hall_create',function(req,res){
+app.get('/create_cinema_hall',function(req,res){
+	res.render('cinema_hall');
+});
+
+app.get('/create_movie_cinema_hall',function(req,res){
 	res.render('cinema_hall');
 });
 
@@ -77,6 +81,18 @@ app.post('/create_cinema_hall',function(req,res){
 	    if (err) throw err;
 	    console.log(result);
 	});
+	res.send('cinema_hall created');
+});
+
+
+app.post('/create_movie_cinema_hall',function(req,res){
+	q = "insert into cinema_hall values(\""+req.body.cinema_hall_id+"\",\""+req.body.movie_id+"\")";
+	console.log(q);
+	con.query(q, function (err, result) {
+	    if (err) throw err;
+	    console.log(result);
+	});
+	res.send('movie in cinema hall created created');
 });
 
 
