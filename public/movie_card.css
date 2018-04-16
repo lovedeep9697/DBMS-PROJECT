@@ -1,177 +1,220 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800");
+@charset "UTF-8";
 * {
   box-sizing: border-box;
-  margin: 0;
 }
 
-html, body {
-  margin: 0;
-  background: white;
-  font-family: 'Montserrat', helvetica, arial, sans-serif;
-  font-size: 14px;
-  font-weight: 400;
+body {
+  background: #B5B5B5;
 }
 
-.link {
-  display: block;
-  text-align: center;
-  color: #777;
-  text-decoration: none;
-  padding: 10px;
-}
-
-.movie_card {
+.moviecard {
+  font-family: 'Helvetica', sans-serif, 'Ariel';
   position: relative;
-  display: block;
-  width: 800px;
-  height: 350px;
-  margin: 80px auto;
-  overflow: hidden;
-  border-radius: 10px;
-  transition: all 0.4s;
-  box-shadow: 0px 0px 120px -25px rgba(0, 0, 0, 0.5);
-}
-.movie_card:hover {
-  -webkit-transform: scale(1.02);
-          transform: scale(1.02);
-  box-shadow: 0px 0px 80px -25px rgba(0, 0, 0, 0.5);
-  transition: all 0.4s;
-}
-.movie_card .info_section {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background-blend-mode: multiply;
-  z-index: 2;
-  border-radius: 10px;
-}
-.movie_card .info_section .movie_header {
-  position: relative;
-  padding: 25px;
-  height: 40%;
-}
-.movie_card .info_section .movie_header h1 {
-  color: black;
-  font-weight: 400;
-}
-.movie_card .info_section .movie_header h4 {
-  color: #555;
-  font-weight: 400;
-}
-.movie_card .info_section .movie_header .minutes {
-  display: inline-block;
-  margin-top: 15px;
-  color: #555;
-  padding: 5px;
+  background: #ffffff;
+  color: #555555;
+  margin: 50px auto;
+  width: 850px;
+  max-width: 900px;
+  min-height: 300px;
+  padding: 30px 290px 30px 30px;
+  -moz-box-shadow: -5px 5px 15px;
+  -webkit-box-shadow: -5px 5px 15px;
+  box-shadow: -5px 5px 15px;
   border-radius: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.05);
 }
-.movie_card .info_section .movie_header .type {
-  display: inline-block;
-  color: #959595;
-  margin-left: 10px;
-}
-.movie_card .info_section .movie_header .locandina {
+.moviecard #movie-content {
+  opacity: 1;
+  width: 100%;
+  display: table;
+  transition: all 500ms ease-out;
   position: relative;
-  float: left;
-  margin-right: 20px;
-  height: 120px;
-  box-shadow: 0 0 20px -10px rgba(0, 0, 0, 0.5);
 }
-.movie_card .info_section .movie_desc {
-  padding: 25px;
-  height: 50%;
+.moviecard .movie-title {
+  font-size: 36px;
+  padding-bottom: 6px;
+  color: #333333;
 }
-.movie_card .info_section .movie_desc .text {
-  color: #545454;
+.moviecard .movie-title .movie-year {
+  margin-left: 12px;
+  font-size: 16px;
 }
-.movie_card .info_section .movie_social {
-  height: 10%;
-  padding-left: 15px;
-  padding-bottom: 20px;
+.moviecard .movie-title a {
+  color: #333333;
+  text-decoration: none;
 }
-.movie_card .info_section .movie_social ul {
-  list-style: none;
-  padding: 0;
+.moviecard .movie-title a:hover {
+  color: #858585;
 }
-.movie_card .info_section .movie_social ul li {
+.moviecard .movie-details {
+  font-size: 12px;
+  padding-bottom: 24px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #dbdbdb;
+}
+.moviecard .movie-details span {
+  padding: 0px 6px;
+  border-right: 1px solid #dbdbdb;
+}
+.moviecard .movie-details span:last-child {
+  border: none;
+}
+.moviecard .movie-castcrew {
+  padding-top: 12px;
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.moviecard .movie-castcrew span.title {
+  color: #333333;
   display: inline-block;
-  color: rgba(0, 0, 0, 0.3);
-  transition: color 0.3s;
-  transition-delay: 0.15s;
-  margin: 0 10px;
+  width: 80px;
+  font-weight: 600;
 }
-.movie_card .info_section .movie_social ul li:hover {
-  transition: color 0.3s;
-  color: rgba(0, 0, 0, 0.7);
+.moviecard .movie-synopsis {
+  margin: 24px 0px;
+  padding-top: 24px;
+  border-top: 1px solid #dbdbdb;
+  max-height: 130px;
+  height: 130px;
+  overflow-y: hidden;
+  width: 100%;
 }
-.movie_card .info_section .movie_social ul li i {
-  font-size: 19px;
+.moviecard .movie-ratings {
+  position: absolute;
+  right: 0px;
+}
+.moviecard .movie-ratings span.star {
+  display: inline-block;
+  margin-right: 12px;
+  color: #F0DE00;
+  font-size: 36px;
+}
+.moviecard .movie-ratings span.score {
+  font-size: 30px;
+  color: #333333;
+}
+.moviecard .movie-trailer-btn {
+  text-transform: uppercase;
+  outline: none;
+  padding: 15px 50px;
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+}
+.moviecard .movie-trailer-btn:hover {
+  text-decoration: underline;
+}
+.moviecard .movie-trailer-btn:hover:before {
+  color: #333333;
+}
+.moviecard .movie-trailer-btn:hover:after {
+  border-color: #333333;
+}
+.moviecard .movie-trailer-btn:before {
+  content: '▸';
+  font-size: 30px;
+  color: #333333;
+  position: absolute;
+  top: 2px;
+  left: 17px;
+}
+.moviecard .movie-trailer-btn:after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  border: 1px solid #333333;
+  border-radius: 50%;
+  position: absolute;
+  left: 18px;
+  top: 12px;
+}
+.moviecard .movie-trailer {
+  width: 0px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0px;
+  height: 100%;
+  transition: all 500ms;
+  top: 0px;
+  background: #ffffff;
+  z-index: 1;
+  padding: 60px 40px 60px 60px;
+  border-radius: 5px;
+}
+.moviecard .movie-trailer a.back-btn {
+  color: #333333;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 6px 12px 6px 18px;
+  position: absolute;
+  top: 12px;
+  left: 300px;
+  text-transform: uppercase;
+  font-size: 12px;
   cursor: pointer;
 }
-.movie_card .blur_back {
+.moviecard .movie-trailer a.back-btn:before {
+  content: '⌜';
   position: absolute;
-  top: 0;
-  z-index: 1;
+  left: 5px;
+  top: 1px;
+  transform: rotate(-45deg);
+  font-size: 20px;
+}
+.moviecard .movie-trailer a.back-btn:hover {
+  color: #333;
+}
+.moviecard .movie-trailer iframe {
+  width: 100%;
   height: 100%;
-  right: 0;
-  background-size: cover;
-  border-radius: 11px;
 }
-
-@media screen and (min-width: 768px) {
-  .movie_header {
-    width: 65%;
-  }
-
-  .movie_desc {
-    width: 50%;
-  }
-
-  .info_section {
-    background: linear-gradient(to right, #e5e6e6 50%, transparent 100%);
-  }
-
-  .blur_back {
-    width: 80%;
-    background-position: -100% 10% !important;
-  }
+.moviecard .movie-poster {
+  position: absolute;
+  background: url("http://www.pulpcurry.com/wp-content/uploads/2015/09/Sicario.jpg");
+  background-color: #dbdbdb;
+  background-size: 360px 540px;
+  background-repeat: no-repeat;
+  height: 0;
+  width: 360px;
+  height: 540px;
+  right: -100px;
+  top: -20px;
+  -moz-box-shadow: -2px 2px 7px rgba(0, 0, 0, 0.6);
+  -webkit-box-shadow: -2px 2px 7px rgba(0, 0, 0, 0.6);
+  box-shadow: -2px 2px 7px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  transition: all 500ms ease-out;
+  z-index: 10;
 }
-@media screen and (max-width: 768px) {
-  .movie_card {
-    width: 95%;
-    margin: 70px auto;
-    min-height: 350px;
-    height: auto;
-  }
-
-  .blur_back {
-    width: 100%;
-    background-position: 50% 50% !important;
-  }
-
-  .movie_header {
-    width: 100%;
-    margin-top: 85px;
-  }
-
-  .movie_desc {
-    width: 100%;
-  }
-
-  .info_section {
-    background: linear-gradient(to top, #e5e6e6 50%, transparent 100%);
-    display: inline-grid;
-  }
+.moviecard .movie-poster:before {
+  content: '▸';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 200px;
+  color: rgba(255, 255, 255, 0.4);
 }
-/*.bright_back {
-  background: url("https://occ-0-2433-448.1.nflxso.net/art/cd5c9/3e192edf2027c536e25bb5d3b6ac93ced77cd5c9.jpg");
+.moviecard .movie-poster:hover:before {
+  color: rgba(255, 255, 255, 0.8);
 }
-
-.tomb_back {
-  background: url("https://fsmedia.imgix.net/cd/c9/5e/ba/4817/4d9a/93f0/c776ec32ecbc/lara-crofts-neck-looks-unnatural-in-the-new-poster-for-tomb-raider.png");
+.moviecard.movie-view-trailer .movie-poster {
+  right: 600px;
 }
-
-.ave_back {
-  background: url("https://www.gannett-cdn.com/-mm-/c03fd140debe8ad4c05cf81a5cad7ad61a12ce52/c=0-1580-2985-3266&r=x803&c=1600x800/local/-/media/2017/06/09/USATODAY/USATODAY/636326272873599176-Black-Panther-Teaser.jpg");
-}*/
+.moviecard.movie-view-trailer #movie-content {
+  opacity: 0;
+  width: 0px;
+}
+.moviecard.movie-view-trailer .movie-trailer {
+  width: 100%;
+  opacity: 1;
+  padding-left: 300px;
+}
+.moviecard.movie-view-trailer .movie-trailer #youvideo {
+  height: 100%;
+}

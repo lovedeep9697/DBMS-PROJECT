@@ -6,6 +6,8 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<!-- CSS -->
 	<link rel="stylesheet" href="movie_card.css" type="text/css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="support.js"></script>
 
 </head>
 <body>
@@ -15,7 +17,7 @@
 
 			<ul class="nav navbar-nav">
 				<!-- Logo -->
-				<li><a class="navbar-brand" href=""><img alt ="BRAND" src="https://static.turbosquid.com/Preview/2016/02/25__02_58_28/Strawbery_cut_top_Cinewide_0000.jpg94be3a12-8713-40ef-bffd-538d3f268a4bOriginal.jpg" style="width:20px"></a></li>
+				<li><a class="navbar-brand" href=""><img alt ="BRAND" src="https://static.turbosquid.com/Preview/2016/02/25__02_58_28/Strawbery_cut_top_Cinewide_0000.jpg94be3a12-8713-40ef-bffd-538d3f268a4bOriginal.jpg" style="width:50px"></a></li>
 			</ul>
 
 			<!-- search Bar -->
@@ -40,42 +42,44 @@
 
 <!-- <%=movies[0].duration%> -->
 
-<% for (movie in movies){ %>
+<% for (movie in movies){%>
+<div class="moviecard <%=movies[movie].movie_id%>">
+  <div class="movie-poster play-trailer" ></div>
+  <div id="movie-content">
+   
+    <div class="movie-rati"><span class="star">★</span><span class="score"><%=movies[movie].rating%></span><span class="score-out-of">/ 10 (IMDB)</span></div>
+   
+    <div class="movie-title"><a href="http://www.imdb.com/title/tt3397884" target="_blank"><%=movies[movie].movie_name%></a><span class="movie-year">2015</span></div>
+    
+    <div class="movie-details"><span class="movie-rating"><%=movies[movie].certification%></span><span class="movie-duration"><%=movies[movie].duration%></span><span class="movie-genre"><%=movies[movie].genre%></span></div>
 
-		<div class="movie_card" id="bright">
-  <div class="info_section">
-    <div class="movie_header">
-      <img class="locandina" src="<%=movies[movie].img_link%>"/>
-      <h1><%=movies[movie].movie_name%></h1>
-      <!-- <h4><%=movies[movie].release_date%></h4> -->
-      <span class="minutes"><%=movies[movie].duration%> mins</span>
-      <p class="type"><%=movies[movie].genre%></p>
-    </div>
-    <div class="movie_desc">
-      <p class="text">
-        <!-- Set in a world where fantasy creatures live side by side with humans. A human cop is forced to work with an Orc to find a weapon everyone is prepared to kill for.  -->
-        <%=movies[movie].description%>
-      </p>
-      <button ><img src="https://www.spreadshirt.com/image-server/v1/mp/designs/1010804667,width=178,height=178/fun-play-button-icon.png" style="width:30px"  ></button>
-       <button ><img src="http://www.bookingcounts.com/shared/buttons/Book-Now/144/Book-Now-button-dkblue-0204-lg.png" style="width:30px"  ></button>
-    </div>
-
-    <div class="movie_social">
-      <ul>
-        <li><i class="material-icons">share</i></li>
-        <li><i class="material-icons"></i></li>
-        <li><i class="material-icons">chat_bubble</i></li>  
-      </ul>
-    </div>
+    <div class="movie-castcrew"><span class="title">Director</span><span class="name">Denis Villeneuve</span></div>
+    
+    <div class="movie-castcrew"><span class="title">Writer</span><span class="name">Taylor Sheridan</span></div>
+    
+    <div class="movie-castcrew"><span class="title">Cast</span><span class="name">Emily Blunt, Josh Brolin, Benicio Del Toro</span></div>
+    
+    <div class="movie-synopsis"><%=movies[movie].description%></div>
+    
+    <button class="movie-trailer-btn play-trailer" id="<%=movies[movie].movie_id%>" type="button">play trailer</button>
+  
   </div>
-  <div class="blur_back bright_back" id="<%=movies[movie].movie_name%>"></div>
-  <script type="text/javascript">
-    var name= '<%=movies[movie].movie_name%>';
-    var link= "<%=movies[movie].img_link2%>";
-    document.getElementById(name).style.backgroundImage = "url('"+link+"')";
-  </script>
+  
+  <div class="movie-trailer" ><a class="back-btn" id="<%=movies[movie].movie_id%>">back</a>
+    
+    <div class="<%=movies[movie].movie_id%>" style="height: 100%;">
+      <iframe class="iframe" src="<%=movies[movie].trailer%>" frameborder="0" allowfullscreen="allowfullscreen" allowScriptAccess="always"></iframe>
+    </div>
+
+  </div>
 </div>
+
+
 <%}%>
+
+
+
+
 
 		
 	
