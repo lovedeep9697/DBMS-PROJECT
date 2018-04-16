@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	<title></title>
@@ -10,25 +10,12 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+	<nav class="navbar navbar-default navbar-static-top navbar-inverse">
 		<div class="container">
 
 			<ul class="nav navbar-nav">
 				<!-- Logo -->
-				<li>
-          
-          <!-- <a class="navbar-brand" href="">
-              <img alt ="BRAND" src="">
-          </a> -->
-          <div class="container-fluid">
-              <div class="navbar-header">
-              <a class="navbar-brand" href="#">
-              <img alt="Brand" src="https://img.crocdn.co.uk/images/products2/pl/20/00/00/89/pl2000008912.jpg?width=940&height=940" style="height:30px">
-              </a>
-            </div>
-          </div>
-
-        </li>
+				<li><a class="navbar-brand" href=""><img alt ="BRAND" src=""></a></li>
 			</ul>
 
 			<!-- search Bar -->
@@ -51,7 +38,7 @@
 			<!-- Sign In  -->
 			
 
-
+<!-- <%=movies[0].duration%> -->
 
 <% for (movie in movies){ %>
 
@@ -69,10 +56,8 @@
         <!-- Set in a world where fantasy creatures live side by side with humans. A human cop is forced to work with an Orc to find a weapon everyone is prepared to kill for.  -->
         <%=movies[movie].description%>
       </p>
-       <button><img src="https://www.spreadshirt.com/image-server/v1/mp/designs/1010804667,width=178,height=178/fun-play-button-icon.png" style="width:30px"></button>
-      <button ><img src="http://www.bookingcounts.com/shared/buttons/Book-Now/144/Book-Now-button-dkblue-0204-lg.png" style="width:30px"  ></button>
+      <button ><img src="https://www.spreadshirt.com/image-server/v1/mp/designs/1010804667,width=178,height=178/fun-play-button-icon.png" style="width:30px"  ></button>
     </div>
-
 
     <div class="movie_social">
       <ul>
@@ -82,13 +67,13 @@
       </ul>
     </div>
   </div>
-  <div class="blur_back bright_back"></div>
+  <div class="blur_back bright_back" id="<%=movies[movie].movie_name%>"></div>
+  <script type="text/javascript">
+    var name= '<%=movies[movie].movie_name%>';
+    var link= "<%=movies[movie].img_link2%>";
+    document.getElementById(name).style.backgroundImage = "url('"+link+"')";
+  </script>
 </div>
-
-  
-
-
-
 <%}%>
 
 		

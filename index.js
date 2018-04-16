@@ -96,7 +96,7 @@ app.get('/', function(req, res){
   	con.query(q, function (err, result) {
 	    if (err) throw err;
 	   	// console.log(result)
-	   	res.render('front_screen.ejs',{name:sess.email,movies:result});
+	   	res.render('front_screen.ejs',{name:sess.email,movies:result,kush: 'person with the bush'});
 	});
 
 
