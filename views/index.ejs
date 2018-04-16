@@ -11,7 +11,7 @@
     <div class="container">
      
 
-      <form action = "/create_movie " method ="post" >
+      <form action = "/create_movie " method ="post"  id ="movie_form">
 
         <div class="form-group">
           <label for="exampleInputEmail1">Movie ID</label>
@@ -74,11 +74,38 @@
           <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
         </div>
 
-         <div class="form-group">
+        <div class="form-group">
           <label for="exampleInputEmail1"> Trailer</label>
           <input type="url" name ="trailer" class="form-control" id="trailer" aria-describedby="emailHelp" placeholder="Enter trailer urls">
           <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
         </div>
+
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">Genre</label>
+          <input type="text" name ="genre" class="form-control" id="genre" aria-describedby="emailHelp" placeholder="Enter Genre">
+          <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+        </div>
+
+        
+        <div class="form-group">
+          <label for="exampleInputEmail1">Image Link</label>
+          <input type="text" name ="img_link" class="form-control" id="img_link" aria-describedby="emailHelp" placeholder="Enter image link">
+          <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Image Link 2</label>
+          <input type="text" name ="img_link2" class="form-control" id="img_link2" aria-describedby="emailHelp" placeholder="Enter image link2">
+          <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+        </div>
+
+        <textarea name="description" placeholder="Enter Description Here......."></textarea>
+
+
+
+
+
+
 
          <button type="submit" class="btn btn-default">Submit</button>
 
