@@ -32,7 +32,9 @@ app.use(function(req,res,next){
 });
 
 
-app.post('/req_sign_in',function(req,res,next){
+
+
+app.post('/req_sign_in',function(req,res){
 	
 	pass = req.body.cust_pass;
 	email = req.body.email;
@@ -51,6 +53,22 @@ app.post('/req_sign_in',function(req,res,next){
 	    }	
 	});
 	console.log("outside"+sess.email);
+});
+
+app.post('/',function(req,res){
+
+	search = req.body.search;
+	console.log("search se aaya",search);
+	q = "select * from movie where movie_name = \""+search+"\"";
+  	movies = []
+  	con.query(q, function (err, result) {
+	    if (err) throw err;
+	   	// console.log(result);
+
+	   	res.render('front_screen.ejs',{name:sess.email,movies:result});
+	});
+
+
 });
 
 
@@ -72,11 +90,12 @@ con.query("use movieticket", function (err, result) {
 
 app.get('/', function(req, res){	
   	// res.render('index');
+  	console.log("aaya")
   	q = "select * from movie ";
   	movies = []
   	con.query(q, function (err, result) {
 	    if (err) throw err;
-	   	console.log(result)
+	   	// console.log(result)
 	   	res.render('front_screen.ejs',{name:sess.email,movies:result});
 	});
 
