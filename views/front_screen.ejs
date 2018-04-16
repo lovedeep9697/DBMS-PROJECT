@@ -69,11 +69,9 @@
   </div>
   <div class="blur_back bright_back" id="<%=movies[movie].movie_name%>"></div>
   <script type="text/javascript">
-    var temp= '<%=movies[movie].movie_name%>';
-    // var temp2= '<%=kush%>';
-    console.log("yeah lo",temp);
-    console.log("poop",  temp2);
-    document.getElementById("<%=movies[movie].movie_name%>").style.backgroundImage = "url('"+<%=movies[movie].img_link2%>+"')";
+    var name= '<%=movies[movie].movie_name%>';
+    var link= "<%=movies[movie].img_link2%>";
+    document.getElementById(name).style.backgroundImage = "url('"+link+"')";
   </script>
 </div>
 <%}%>
