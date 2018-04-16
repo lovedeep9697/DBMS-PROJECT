@@ -38,9 +38,11 @@ app.post('/req_sign_in',function(req,res,next){
 	    if (err) throw err;
 	    console.log(result);
 	    if(result){
+	    	console.log("setting sess.email");
 	    	sess.email = email;
 	    }	
 	});
+	console.log(sess.email);
 	res.render("front_screen.ejs",{name:sess.email});
 
 });

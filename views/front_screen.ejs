@@ -27,21 +27,19 @@
 
 
 			<!-- Sign In  -->
+			<% if (name){ %>
+			<p class="navbar-text navbar-right"><a id="signin_anchor" href="sign_in" class="navbar-link"><%=name%></a></p>
+			<% }else{ %>
 			<p class="navbar-text navbar-right"><a id="signin_anchor" href="sign_in" class="navbar-link">Sign In</a></p>
+			<%}%>
+
 		
 	</div>
 </nav>
-
+<%=name>
 </body>
 
-<script type="text/javascript"> 
-var name = <%=name>
-if(name){
-	a = document.getElementById("signin_anchor");
-	a.text = name;
-	a.href = "";
-}
-</script>
 
 
-</html>text/javascript
+
+</html>
