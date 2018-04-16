@@ -23,16 +23,16 @@
       		</form>
 			
 			<!-- Sign In  -->
-			<p class="navbar-text navbar-right"><a id="signin_anchor" href="sign_in" class="navbar-link">Sign In</a></p>
+			<% if (name){ %>
+      <p class="navbar-text navbar-right"><a id="signin_anchor" href="sign_in" class="navbar-link"><%=name%></a></p>
+      <% }else{ %>
+      <p class="navbar-text navbar-right"><a id="signin_anchor" href="sign_in" class="navbar-link">Sign In</a></p>
+      <%}%>
 		</div>
 	</nav>
 
 			<!-- Sign In  -->
-			<% if (name){ %>
-			<p class="navbar-text navbar-right"><a id="signin_anchor" href="sign_in" class="navbar-link"><%=name%></a></p>
-			<% }else{ %>
-			<p class="navbar-text navbar-right"><a id="signin_anchor" href="sign_in" class="navbar-link">Sign In</a></p>
-			<%}%>
+			
 
 
 

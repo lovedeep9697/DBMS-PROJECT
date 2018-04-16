@@ -1,5 +1,6 @@
 var express = require('express');
 var session = require('express-session');
+var cookieParser = require('cookie-parser');
 var mysql = require('mysql');
 var app = express();
 app.set('view engine', 'ejs');
@@ -7,19 +8,22 @@ app.use( express.static( "public" ) );
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 var sess;
+app.use(cookieParser());
 app.use(session({secret: "Shh, its a secret!",resave: true,
-  saveUninitialized: true,
-  cookie: { secure: true }}));
+  saveUninitialized: true}));
 
 
 app.use("/",function(req,res,next){
 	sess = req.session;
+	console.log("new session added"+sess.email);
 	next();
 })
 
-app.use('/create_cinema_hall',function(req,res,next){
+app.use(function(req,res,next){
+	if(req.path=='/sign_in' || req.path == '/' || req.path == '/req_sign_in'){
+		return next();
+	}
 	if(sess.email){
-
 		next();
 	}else{
 		console.log("new user");
@@ -40,11 +44,13 @@ app.post('/req_sign_in',function(req,res,next){
 	    if(result){
 	    	console.log("setting sess.email");
 	    	sess.email = email;
+			console.log(sess.email);
+			res.render("front_screen.ejs",{name:sess.email});
+	    }else{
+	    	res.render('sign_form.ejs');
 	    }	
 	});
-	console.log(sess.email);
-	res.render("front_screen.ejs",{name:sess.email});
-
+	console.log("outside"+sess.email);
 });
 
 
