@@ -27,7 +27,7 @@ app.use(function(req,res,next){
 		next();
 	}else{
 		console.log("new user");
-		res.render('sign_form.ejs');
+		res.redirect('/');
 	}
 });
 
@@ -72,7 +72,16 @@ con.query("use movieticket", function (err, result) {
 
 app.get('/', function(req, res){	
   	// res.render('index');
-  	res.render('front_screen.ejs',{name:sess.email});
+  	q = "select * from movie ";
+  	movies = []
+  	con.query(q, function (err, result) {
+	    if (err) throw err;
+	   	console.log(result)
+	   	res.render('front_screen.ejs',{name:sess.email,movies:result});
+	});
+
+
+  	
 
 });
 
