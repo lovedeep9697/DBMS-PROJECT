@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<!-- BootStrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- CSS -->
+	<link rel="stylesheet" href="movie_card.css" type="text/css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="support.js"></script>
+
+</head>
+<body>
+
+	<nav class="navbar navbar-default navbar-static-top navbar-inverse">
+		<div class="container">
+
+			<ul class="nav navbar-nav">
+				<!-- Logo -->
+				<li><a class="navbar-brand" href=""><img alt ="BRAND" src="https://static.turbosquid.com/Preview/2016/02/25__02_58_28/Strawbery_cut_top_Cinewide_0000.jpg94be3a12-8713-40ef-bffd-538d3f268a4bOriginal.jpg" style="width:50px"></a></li>
+			</ul>
+
+			<!-- search Bar -->
+			   <form action="/" method="post" class="navbar-form navbar-left"  >
+        		<div class="form-group" >
+          			<input type="text" class="form-control" placeholder="Search" style="width:700px" name="search">
+        		</div>
+        		<input type="submit" class="btn btn-default">Submit</button>
+      	 </form>
+			
+			<!-- Sign In  -->
+			<% if (name){ %>
+      <p class="navbar-text navbar-right"><a id="signin_anchor" href="sign_in" class="navbar-link"><%=name%></a></p>
+      <% }else{ %>
+      <p class="navbar-text navbar-right"><a id="signin_anchor" href="sign_in" class="navbar-link">Sign In</a></p>
+      <%}%>
+		</div>
+	</nav>
+
+			<!-- Sign In  -->
+			
+
+<!-- <%=movies[0].duration%> -->
+
+<% for (movie in movies){%>
+<div class="moviecard <%=movies[movie].movie_id%>">
+  <div class="movie-poster play-trailer" ></div>
+  <div id="movie-content">
+   
+    <div class="movie-rati"><span class="star">★</span><span class="score"><%=movies[movie].rating%></span><span class="score-out-of">/ 10 (IMDB)</span></div>
+   
+    <div class="movie-title"><a href="http://www.imdb.com/title/tt3397884" target="_blank"><%=movies[movie].movie_name%></a><span class="movie-year">2015</span></div>
+    
+    <div class="movie-details"><span class="movie-rating"><%=movies[movie].certification%></span><span class="movie-duration"><%=movies[movie].duration%></span><span class="movie-genre"><%=movies[movie].genre%></span></div>
+
+    <div class="movie-castcrew"><span class="title">Director</span><span class="name">Denis Villeneuve</span></div>
+    
+    <div class="movie-castcrew"><span class="title">Writer</span><span class="name">Taylor Sheridan</span></div>
+    
+    <div class="movie-castcrew"><span class="title">Cast</span><span class="name">Emily Blunt, Josh Brolin, Benicio Del Toro</span></div>
+    
+    <div class="movie-synopsis"><%=movies[movie].description%></div>
+    
+    <button class="movie-trailer-btn play-trailer" id="<%=movies[movie].movie_id%>" type="button">play trailer</button>
+  
+  </div>
+  
+  <div class="movie-trailer" ><a class="back-btn" id="<%=movies[movie].movie_id%>">back</a>
+    
+    <div class="<%=movies[movie].movie_id%>" style="height: 100%;">
+      <iframe class="iframe" src="<%=movies[movie].trailer%>" frameborder="0" allowfullscreen="allowfullscreen" allowScriptAccess="always"></iframe>
+    </div>
+
+  </div>
+</div>
+
+
+<%}%>
+
+
+
+
+
+		
+	
+</body>
+
+</html>
+
+
+
+ 
