@@ -21,8 +21,9 @@ function toggleVideo(state,idt) {
   console.log(iframe);
   div.style.display = state == "hide" ? "none" : "";
   func = state == "hide" ? "pauseVideo" : "playVideo";
+  console.log("func",func);
   iframe.postMessage(
     '{"event":"command","func":"' + func + '","args":""}',
-    "*"
+    "https://www.youtube.com/embed/sOEg_YZQsTI"
   );
 }

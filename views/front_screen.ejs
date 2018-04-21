@@ -44,7 +44,7 @@
 
 <% for (movie in movies){%>
 <div class="moviecard <%=movies[movie].movie_id%>">
-  <div class="movie-poster play-trailer" ></div>
+  <div class="movie-poster play-trailer" style="background: url('<%=movies[movie].img_link%>');" ></div>
   <div id="movie-content">
    
     <div class="movie-rati"><span class="star">★</span><span class="score"><%=movies[movie].rating%></span><span class="score-out-of">/ 10 (IMDB)</span></div>

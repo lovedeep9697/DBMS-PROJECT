@@ -32,6 +32,17 @@ app.use(function(req,res,next){
 });
 
 
+app.post('/get_cinema',function(req,res){
+	
+	movie_id = req.body.movie_id;
+	q = "select * from cinema_hall natural join movie_cinema_hall where movie_id = \""+movie_id+"\"";	
+	
+	con.query(q, function (err, result){
+		if(err) throw err;
+		console.log(result);	
+	});
+
+});
 
 
 app.post('/req_sign_in',function(req,res){
@@ -42,24 +53,25 @@ app.post('/req_sign_in',function(req,res){
 	console.log(q);
 	con.query(q, function (err, result) {
 	    if (err) throw err;
-	    console.log(result);
+	    // console.log(result);
 	    if(result){
-	    	console.log("setting sess.email");
+	    	// console.log("setting sess.email");
 	    	sess.email = email;
-			console.log(sess.email);
-			res.render("front_screen.ejs",{name:sess.email});
+			// console.log(sess.email);
+			res.redirect('/');
 	    }else{
 	    	res.render('sign_form.ejs');
 	    }	
 	});
-	console.log("outside"+sess.email);
+	// console.log("outside"+sess.email);
 });
 
 app.post('/',function(req,res){
 
 	search = req.body.search;
-	console.log("search se aaya",search);
+	// console.log("search se aaya",search);
 	q = "select * from movie where movie_name = \""+search+"\"";
+  	console.log(q);
   	movies = []
   	con.query(q, function (err, result) {
 	    if (err) throw err;
@@ -90,19 +102,29 @@ con.query("use movieticket", function (err, result) {
 
 app.get('/', function(req, res){	
   	// res.render('index');
-  	console.log("aaya")
+  	// console.log("aaya")
   	q = "select * from movie ";
   	movies = []
+  	console.log(q);
   	con.query(q, function (err, result) {
 	    if (err) throw err;
-	   	// console.log(result)
-	   	res.render('front_screen.ejs',{name:sess.email,movies:result,kush: 'person with the bush'});
+	   	movies = result;
+	   	// for (movie in movies){
+	   	// 	q_e = "select director_name from director_movie where movie_id ="+"\""+movies[movie].movie_id+"\"";
+	   	// 	movies[movie].director = "";
+	   	// 	con.query(q_e,function(err,result){
+	   	// 		for (i in result){
+	   	// 			movies[movie].director+=toString(result[i]);
+	   	// 		}	
+	   	// 	});
+	   	// }
+	   	res.render('front_screen.ejs',{name:sess.email,movies:result});
 	});
-
-
-  	
-
 });
+
+app.get('/create_movie',function(req,res){
+	res.render('index.ejs');
+})
 
 
 app.get('/sign_in', function(req, res){	
@@ -125,7 +147,7 @@ app.post('/create_movie',function(req,res){
 	// console.log(req.body['movie_name ']);
 	director_name = req.body.director_name;
 	actor_name = req.body.actor_name;
-	q = "insert into movie values(\""+req.body.movie_id+"\",\""+req.body.certifications+"\",\""+req.body.duration+"\",\""+req.body.release_date+"\",\""+req.body.movie_name+"\",\"8\",\"8\",\""+req.body.language+"\")";
+	q = "insert into movie values(\""+req.body.movie_id+"\",\""+req.body.certifications+"\",\""+req.body.duration+"\",\""+req.body.release_date+"\",\""+req.body.movie_name+"\",\""+req.body.rating+"\",\""+req.body.trailer+"\",\""+req.body.genre+"\",\""+req.body.description+"\",\""+req.body.img_link+"\",\""+req.body.img_link2+"\",\""+req.body.language+"\")";
 	console.log(q);
 	con.query(q, function (err, result) {
 	    if (err) throw err;
