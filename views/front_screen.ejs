@@ -62,7 +62,11 @@
     <div class="movie-synopsis"><%=movies[movie].description%></div>
 
     <!-- book show button -->
-    <a href="cinema_hall_view.ejs"><button>Book Show</button></a>
+    <form>
+      <input type="hidden" name="" value="movie_id">
+      <input type="submit" value="Book Show">
+
+    </form>
 
     
     <button class="movie-trailer-btn play-trailer" id="<%=movies[movie].movie_id%>" type="button">play trailer</button>
