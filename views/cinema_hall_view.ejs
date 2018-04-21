@@ -198,15 +198,18 @@ button.btnSend {
 
 </head>
 
-<body>
+<body style="display: flex;flex-direction: column;">
 
 
+
+<% for (cinema in result ){%>
 
 <div class="wrapper cards">
-  <div class="container"   >
+  
+  <div class="container"    >
     <div class="card">
       <div class="front" >
-        <h2>CinemaHall</h2>
+        <h2><%= result[cinema].hall_name%></h2>
       </div>
       <div class="back">
         <div class="content">
@@ -221,8 +224,12 @@ button.btnSend {
       </div>
     </div>
   </div>
-
   
+</div>
+<%}%>
+
+</ul>
+
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">

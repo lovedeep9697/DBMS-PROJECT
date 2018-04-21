@@ -20,6 +20,7 @@ app.use("/",function(req,res,next){
 })
 
 app.use(function(req,res,next){
+	console.log('here')
 	if(req.path=='/sign_in' || req.path == '/' || req.path == '/req_sign_in'){
 		return next();
 	}
@@ -32,14 +33,16 @@ app.use(function(req,res,next){
 });
 
 
+
 app.post('/get_cinema',function(req,res){
 	
 	movie_id = req.body.movie_id;
 	q = "select * from cinema_hall natural join movie_cinema_hall where movie_id = \""+movie_id+"\"";	
-	
+	console.log(q);
 	con.query(q, function (err, result){
 		if(err) throw err;
-		console.log(result);	
+		console.log(result);
+		res.render('cinema_hall_view.ejs',{result:result});	
 	});
 
 });

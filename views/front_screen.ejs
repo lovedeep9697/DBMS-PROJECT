@@ -62,10 +62,9 @@
     <div class="movie-synopsis"><%=movies[movie].description%></div>
 
     <!-- book show button -->
-    <form>
-      <input type="hidden" name="" value="movie_id">
+    <form action="/get_cinema" method="post">
+      <input type="hidden" name="movie_id" value="<%=movies[movie].movie_id%>">
       <input type="submit" value="Book Show">
-
     </form>
 
     
