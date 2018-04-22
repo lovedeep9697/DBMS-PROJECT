@@ -201,22 +201,38 @@ button.btnSend {
 <body style="display: flex;flex-direction: column;">
 
 
-
+<% visited =[]%>
 <% for (cinema in result ){%>
-
+<% if(visited.includes(result[cinema].cinema_hall_id)){%>
+<%continue;}%>
+<% visited.push(result[cinema].cinema_hall_id);%>
 <div class="wrapper cards">
   
   <div class="container"    >
     <div class="card">
       <div class="front" >
-        <h2><%= result[cinema].hall_name%></h2>
+        <%= result[cinema].hall_name%>
       </div>
       <div class="back">
         <div class="content">
           <h2 class="cardTitle">Book Ticket!!!</h2>
           <p>Select Show Timings</p>
           <ul>
-            <li style="display:inline-block;"><a href="seat_selection.ejs" target="_blank"><button>Time</button></a></li>
+            <% for (i in result){
+              if( result[i].cinema_hall_id == result[cinema].cinema_hall_id ){%>
+               <li style="display:inline-block;">
+               <form action="/seat_selection" method="post">
+                <input type="hidden" name="movie_id" value="<%=result[i].movie_id%>">
+                <input type="hidden" name="cinema_hall_id" value="<%=result[i].cinema_hall_id%>">
+                <input type="hidden" name="show_id" value="<%=result[i].show_id%>">
+                <input type="hidden" name="start_time" value="<%=result[i].start_time%>">
+                <input type="submit" name="<%=result[i].start_time%>" value = "<%=result[i].start_time%>">
+               </form>
+               </li>
+
+              <%}
+            }%>
+           
 
           </ul>
 

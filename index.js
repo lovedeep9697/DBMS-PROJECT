@@ -33,11 +33,31 @@ app.use(function(req,res,next){
 });
 
 
+app.post('/seat_selection',function(req,res){
+	
+	res.render('seat_selection.ejs',{result:req.body});
+
+});
+
+
+app.post('/ticket_make',function(req,res){
+	
+	req.body.cust_id = sess.id;
+	console.log("yaha",req.body);
+	// q = "insert into tickets value(\"12\",\""+req.body.seat_no+"\",\""+req.body.cinema_hall_id+"\""+"\"1\",\""+req.body.s
+
+	res.render('ticket.ejs',{result:req.body});	
+
+
+
+
+});
+
 
 app.post('/get_cinema',function(req,res){
 	
 	movie_id = req.body.movie_id;
-	q = "select * from cinema_hall natural join movie_cinema_hall where movie_id = \""+movie_id+"\"";	
+	q = "select * from cinema_hall natural join movie_cinema_hall natural join shows where movie_id = \""+movie_id+"\"";	
 	console.log(q);
 	con.query(q, function (err, result){
 		if(err) throw err;
@@ -60,6 +80,7 @@ app.post('/req_sign_in',function(req,res){
 	    if(result){
 	    	// console.log("setting sess.email");
 	    	sess.email = email;
+	    	sess.id = result.cust_id
 			// console.log(sess.email);
 			res.redirect('/');
 	    }else{
