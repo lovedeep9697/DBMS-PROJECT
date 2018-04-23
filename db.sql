@@ -2,7 +2,7 @@ create database movieticket;
 use movieticket;
 
 create table movie (
-    movie_id varchar(20) primary key,
+    movie_id varchar(20) primary key ,
     certifications varchar(20) not null,
     duration integer not null,
     release_date date not null,
@@ -77,7 +77,7 @@ create table shows (
 
 create table payments(
     amount int,
-    payment_id varchar(20),
+    payment_id varchar(20) not null AUTO_INCREMENT,
 
     primary key(payment_id)
 
@@ -112,7 +112,7 @@ create table customer(
 
 
 create table tickets (
-    ticket_no varchar(20),
+    ticket_no varchar(20) AUTO_INCREMENT,
     seat_no varchar(20),
     hall_no varchar(20),
     -- show_id varchar(20),
@@ -120,7 +120,7 @@ create table tickets (
     admin_id varchar(20) /* sells relation merge */,
     
     /* is for relation with shows being merged */
-    show_id varchar(20),
+    show_id varchar(20),    
     cinema_hall_id varchar(20),
     movie_id varchar(20),
 
