@@ -39,6 +39,11 @@ app.post('/seat_selection',function(req,res){
 
 });
 
+app.post('/payments',function(req,res){
+	
+	res.render('payment_page.ejs',{result:req.body});
+
+});
 
 app.post('/ticket_make',function(req,res){
 	
@@ -47,8 +52,6 @@ app.post('/ticket_make',function(req,res){
 	// q = "insert into tickets value(\"12\",\""+req.body.seat_no+"\",\""+req.body.cinema_hall_id+"\""+"\"1\",\""+req.body.s
 
 	res.render('ticket.ejs',{result:req.body});	
-
-
 
 
 });
