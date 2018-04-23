@@ -41,6 +41,8 @@ app.post('/seat_selection',function(req,res){
 
 app.post('/payments',function(req,res){
 	
+	console.log("in payments",req.body);
+		
 	res.render('payment_page.ejs',{result:req.body});
 
 });
@@ -49,6 +51,12 @@ app.post('/ticket_make',function(req,res){
 	
 	req.body.cust_id = sess.id;
 	console.log("yaha",req.body);
+	q = "insert into payments (\"100\")";
+	console.log(q);
+	con.query(q, function (err, result){
+		if(err) throw err;
+		console.log(result);
+	});
 	// q = "insert into tickets value(\"12\",\""+req.body.seat_no+"\",\""+req.body.cinema_hall_id+"\""+"\"1\",\""+req.body.s
 
 	res.render('ticket.ejs',{result:req.body});	

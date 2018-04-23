@@ -64,23 +64,18 @@ create table shows (
     show_id varchar(20),
     start_time varchar(20),
     end_time varchar(20),
-
     cinema_hall_id varchar (20),
     movie_id varchar (20),
-
     foreign key(cinema_hall_id,movie_id)
     references movie_cinema_hall(cinema_hall_id,movie_id)
     on delete cascade,
-
     primary key(show_id,cinema_hall_id,movie_id)
 );
 
 create table payments(
     amount int,
     payment_id varchar(20),
-
     primary key(payment_id)
-
 );
 
 
@@ -89,8 +84,6 @@ create table administrator (
     password varchar(20),
     /*merging cinema hall*/
     cinema_hall_id varchar(20),
-
-
     primary key(admin_id),
     foreign key(cinema_hall_id)
     references cinema_hall(cinema_hall_id)

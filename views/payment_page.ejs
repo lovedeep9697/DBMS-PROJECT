@@ -230,7 +230,7 @@
       <a href=''>Deven</a>
     </span> -->
   </div>
-  <form class='modal'>
+  <form action="\ticket_make" method="post" class='modal'>
     <header class='header'>
       <h1>Payment of XXXXXXXXX</h1>
       <div class='card-type'>
@@ -279,7 +279,19 @@
       </div>
     </div>
     <footer class='footer'>
-      <button class='button'>Complete Payment</button>
+    n,bnjbjb,jb,j
+    	<!-- <form action="/ticket_make" method="post"> -->
+    		<input type="hidden" name="movie_id" value="<%= result.movie_id%>">
+    		<input type="hidden" name="cinema_hall_id" value="<%= result.cinema_hall_id%>">
+    		<input type="hidden" name="show_id" value="<%= result.show_id%>">
+    		<input type="hidden" name="start_time" value="<%= result.start_time%>">
+    		<input type="hidden" name="name" value="<%= result.name%>">
+    		<input type="hidden" name="noOfSeats" value="<%= result.numberofseats%>">
+    		<input type="hidden" name="seats" value="<%= result.seats%>">
+    		<input type="hidden" name="amount" value="100">
+    		<input type="submit" name="complete payment" class='button'>
+    	<!-- </form>	 -->
+      
     </footer>
   </form>
 </div>
