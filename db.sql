@@ -2,35 +2,35 @@ create database movieticket;
 use movieticket;
 
 create table movie (
-    movie_id varchar(20) primary key,
-    certifications varchar(20) not null,
+    movie_id varchar(50) primary key ,
+    certifications varchar(50) not null,
     duration integer not null,
     release_date date not null,
-    movie_name varchar(20) not null,
+    movie_name varchar(50) not null,
     /* actors multivalued */
     rating numeric(3,1),
     /* director multivalued */
     trailer varchar(50),
-    genre varchar(10),
+    genre varchar(50),
     description varchar(1000),
     img_link varchar(500),
     img_link2 varchar(500),
-    language varchar(10) not null
+    language varchar(50) not null
     -- check rating<20
 );
 
 /* multivalued attribute */
 create table director_movie (
-    director_name varchar(20),
-    movie_id varchar(20),
+    director_name varchar(50),
+    movie_id varchar(50),
     foreign key(movie_id) references movie(movie_id),
     primary key(movie_id,director_name)
 );
 
 /* multivalued attribute */
 create table actor_movie (
-    actor_name varchar(20),
-    movie_id varchar(20),
+    actor_name varchar(50),
+    movie_id varchar(50),
     foreign key(movie_id) 
         references movie(movie_id) on delete cascade,
 
@@ -38,14 +38,14 @@ create table actor_movie (
 );
 
 create table cinema_hall (
-    cinema_hall_id varchar(20),
-    hall_name varchar(20),
+    cinema_hall_id varchar(50),
+    hall_name varchar(50),
     primary key(cinema_hall_id)
 );
 /* named as screened in relation ER diagram */
 create table movie_cinema_hall (
-    cinema_hall_id varchar(20),
-    movie_id varchar(20),
+    cinema_hall_id varchar(50),
+    movie_id varchar(50),
     
     foreign key(cinema_hall_id)
     references cinema_hall(cinema_hall_id)
@@ -61,11 +61,11 @@ create table movie_cinema_hall (
 /* renamed shows as screening */
 /* has relation merged in shows ... weak entity */
 create table shows (
-    show_id varchar(20),
-    start_time varchar(20),
-    end_time varchar(20),
-    cinema_hall_id varchar (20),
-    movie_id varchar (20),
+    show_id varchar(50),
+    start_time varchar(50),
+    end_time varchar(50),
+    cinema_hall_id varchar(50),
+    movie_id varchar(50),
     foreign key(cinema_hall_id,movie_id)
     references movie_cinema_hall(cinema_hall_id,movie_id)
     on delete cascade,
@@ -74,16 +74,16 @@ create table shows (
 
 create table payments(
     amount int,
-    payment_id varchar(20),
+    payment_id int not null AUTO_INCREMENT,
     primary key(payment_id)
 );
 
 
 create table administrator (
-    admin_id varchar(20) ,
-    password varchar(20),
+    admin_id varchar(50) ,
+    password varchar(50),
     /*merging cinema hall*/
-    cinema_hall_id varchar(20),
+    cinema_hall_id varchar(50),
     primary key(admin_id),
     foreign key(cinema_hall_id)
     references cinema_hall(cinema_hall_id)
@@ -92,12 +92,12 @@ create table administrator (
 );
 
 create table customer(
-    cust_id varchar(20),
-    cust_pass varchar(20) not null,
-    email varchar(30),
-    first_name varchar(10),
-    middle_name varchar(10),
-    last_name varchar(10),
+    cust_id varchar(50),
+    cust_pass varchar(50) not null,
+    email varchar(50),
+    first_name varchar(50),
+    middle_name varchar(50),
+    last_name varchar(50),
     cus_date date,
     primary key(cust_id)
 
@@ -105,23 +105,23 @@ create table customer(
 
 
 create table tickets (
-    ticket_no varchar(20),
-    seat_no varchar(20),
-    hall_no varchar(20),
-    -- show_id varchar(20),
+    ticket_no int AUTO_INCREMENT,
+    seat_no varchar(50),
+    hall_no varchar(50),
+    -- show_id varchar(50),
 
-    admin_id varchar(20) /* sells relation merge */,
+    admin_id varchar(50) /* sells relation merge */,
     
     /* is for relation with shows being merged */
-    show_id varchar(20),
-    cinema_hall_id varchar(20),
-    movie_id varchar(20),
+    show_id varchar(50),    
+    cinema_hall_id varchar(50),
+    movie_id varchar(50),
 
     /* for referencing payments*/
-    payment_id varchar(20),
+    payment_id int,
 
     /*for referencing customer */
-    cust_id varchar(20),
+    cust_id varchar(50),
 
     foreign key (admin_id)
     references administrator(admin_id),
@@ -139,9 +139,9 @@ create table tickets (
 /* named administrator in ER model */
 
 create table seats(
-  seat_no varchar(20),
+  seat_no varchar(50),
   amount int,
-  cinema_hall_id varchar(20),
+  cinema_hall_id varchar(50),
 
   foreign key(cinema_hall_id)
   references cinema_hall(cinema_hall_id)
@@ -149,8 +149,8 @@ create table seats(
 );
 
 create table phone_number(
-    phone_number varchar(20),
-    cust_id varchar(20),
+    phone_number varchar(50),
+    cust_id varchar(50),
 
     primary key (phone_number,cust_id),
     foreign key(cust_id) references customer(cust_id)
@@ -159,19 +159,19 @@ create table phone_number(
 
 
 create table offline(
-    receipt_no varchar(20),
-    payment_id varchar(20),
+    receipt_no varchar(50),
+    payment_id int,
     
     foreign key(payment_id) references payments(payment_id),
     primary key(receipt_no)    
 
 );
 create table online(
-    card_no varchar(20),
-    bank varchar(20),
-    name_on_card varchar(20),
-    payment_id varchar(20),
-    transaction_id varchar(20),
+    card_no varchar(50),
+    bank varchar(50),
+    name_on_card varchar(50),
+    payment_id int,
+    transaction_id varchar(50),
 
     foreign key(payment_id) references payments(payment_id),
     primary key(transaction_id) 

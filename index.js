@@ -51,15 +51,24 @@ app.post('/ticket_make',function(req,res){
 	
 	req.body.cust_id = sess.id;
 	console.log("yaha",req.body);
-	q = "insert into payments (\"100\")";
+	q = "insert into payments values (\"100\",\"0\")";
 	console.log(q);
 	con.query(q, function (err, result){
 		if(err) throw err;
 		console.log(result);
+		qn = "SELECT payment_id FROM payments ORDER BY payment_id DESC LIMIT 1";
+		con.query(qn, function (err, result){
+			if(err) throw err;
+			console.log("payment_id",result[0]);
+			qnn = "insert into tickets value(\"0\",\""+req.body.seat_no+"\",\""+req.body.cinema_hall_id+"\",\"1\",\""+req.body.show_id+"\",\""+req.body.cinema_hall_id+"\",\""+req.body.movie_id+"\",\""+result[0].payment_id+"\",\""+sess.mid+"\")";
+			con.query(qnn,function(err,result){
+				if(err) throw err;
+				res.render('ticket.ejs',{result:req.body});	
+			});
+		});
 	});
-	// q = "insert into tickets value(\"12\",\""+req.body.seat_no+"\",\""+req.body.cinema_hall_id+"\""+"\"1\",\""+req.body.s
-
-	res.render('ticket.ejs',{result:req.body});	
+	
+	
 
 
 });
@@ -91,7 +100,7 @@ app.post('/req_sign_in',function(req,res){
 	    if(result){
 	    	// console.log("setting sess.email");
 	    	sess.email = email;
-	    	sess.id = result.cust_id
+	    	sess.mid = result[0].cust_id
 			// console.log(sess.email);
 			res.redirect('/');
 	    }else{
