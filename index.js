@@ -35,7 +35,20 @@ app.use(function(req,res,next){
 
 app.post('/seat_selection',function(req,res){
 	
-	res.render('seat_selection.ejs',{result:req.body});
+	q = "select seat_no from tickets where movie_id="+req.body.movie_id+" and cinema_hall_id ="+ req.body.cinema_hall_id;
+	console.log("seat se pehle",q);
+	con.query(q,function(err,result){
+		console.log(result);
+		seats_choosen = []
+		for (i in result){
+			seats_choosen = seats_choosen.concat(result[i].seat_no.split(","));
+		}
+		req.body.seats_choosen = seats_choosen;
+		console.log(req.body);
+		res.render('seat_selection.ejs',{result:req.body});
+	});
+
+	// res.render('seat_selection.ejs',{result:req.body});
 
 });
 
@@ -60,7 +73,8 @@ app.post('/ticket_make',function(req,res){
 		con.query(qn, function (err, result){
 			if(err) throw err;
 			console.log("payment_id",result[0]);
-			qnn = "insert into tickets value(\"0\",\""+req.body.seat_no+"\",\""+req.body.cinema_hall_id+"\",\"1\",\""+req.body.show_id+"\",\""+req.body.cinema_hall_id+"\",\""+req.body.movie_id+"\",\""+result[0].payment_id+"\",\""+sess.mid+"\")";
+			console.log(req.body.seats);
+			qnn = "insert into tickets value(\"0\",\""+req.body.seats+"\",\""+req.body.cinema_hall_id+"\",\"1\",\""+req.body.show_id+"\",\""+req.body.cinema_hall_id+"\",\""+req.body.movie_id+"\",\""+result[0].payment_id+"\",\""+sess.mid+"\")";
 			con.query(qnn,function(err,result){
 				if(err) throw err;
 				res.render('ticket.ejs',{result:req.body});	

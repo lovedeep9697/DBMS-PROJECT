@@ -86,9 +86,7 @@ create table administrator (
     cinema_hall_id varchar(50),
     primary key(admin_id),
     foreign key(cinema_hall_id)
-    references cinema_hall(cinema_hall_id)
-
-    
+    references cinema_hall(cinema_hall_id)    
 );
 
 create table customer(
@@ -100,7 +98,6 @@ create table customer(
     last_name varchar(50),
     cus_date date,
     primary key(cust_id)
-
 );
 
 
@@ -161,10 +158,8 @@ create table phone_number(
 create table offline(
     receipt_no varchar(50),
     payment_id int,
-    
     foreign key(payment_id) references payments(payment_id),
     primary key(receipt_no)    
-
 );
 create table online(
     card_no varchar(50),
@@ -172,12 +167,8 @@ create table online(
     name_on_card varchar(50),
     payment_id int,
     transaction_id varchar(50),
-
     foreign key(payment_id) references payments(payment_id),
     primary key(transaction_id) 
-
-
-
 );
 
 
