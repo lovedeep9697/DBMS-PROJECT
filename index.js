@@ -32,6 +32,21 @@ app.use(function(req,res,next){
 	}
 });
 
+app.get('/create_cinema_hall',function(req,res){
+	res.render('cinema_hall.ejs');
+});
+
+
+app.post('/create_cinema_hall',function(req,res){
+
+	q = "insert into cinema_hall values(\""+req.body.cinema_hall_id+"\",\""+req.body.hall_name+"\",\""+req.body.image_link+"\")";
+	con.query(q,function(err,result){
+		if (err) throw err;
+		res.redirect('/');
+	})
+});
+
+
 
 app.post('/seat_selection',function(req,res){
 	

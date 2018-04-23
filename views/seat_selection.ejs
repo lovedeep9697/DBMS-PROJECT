@@ -114,8 +114,8 @@
 </style>
 </head>
 
-<body onload="onLoaderFunc()">
-
+<body onload="onLoaderFunc()" style="background-image: url('movie.jpg'); background-size: cover;">
+<center><div style="background-color: rgba(256,256,256,0.6);width: 50%;">
 	<div class="inputForm">
 	<center>
 	  Name *: <input type="text" id="Username" required>
@@ -376,9 +376,12 @@
     	list = '<%=result.seats_choosen%>';
     	list = list.split(",");
         console.log(list);
-        console.log(String(allInputs[x].value));
+        console.log(allInputs[x].value);
+        console.log(list.includes(allInputs[x].value));
         if(list.includes(allInputs[x].value)){
+            allInputs[x].value = "no";
             allInputs[x].disabled = true;
+            allInputs[x].type = "hidden";
         }
     }
     
@@ -485,6 +488,9 @@ function getCookie(cname) {
 
 
 $(":checkbox").click(function() {
+	if($(":checkbox").value == "no"){
+		return;
+	}
   if ($("input:checked").length == ($("#Numseats").val())) {
     $(":checkbox").prop('disabled', true);
     $(':checked').prop('disabled', false);
@@ -508,6 +514,6 @@ $(":checkbox").click(function() {
 
 
 
-
+</div></center>
 </body>
 </html>

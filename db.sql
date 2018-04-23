@@ -40,6 +40,7 @@ create table actor_movie (
 create table cinema_hall (
     cinema_hall_id varchar(50),
     hall_name varchar(50),
+    link varchar(100),
     primary key(cinema_hall_id)
 );
 /* named as screened in relation ER diagram */
